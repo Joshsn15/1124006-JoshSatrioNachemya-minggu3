@@ -22,11 +22,7 @@ function App() {
       alert("Email tidak valid");
       return;
     } 
-    // else if (password.length < 8) {
-    //   alert("Password harus memiliki panjang minimal 8 karakter");
-    //   return;
-    // }
-
+  
     const response = await fetch('http://localhost:5173/api/auth/login', {
       method: 'POST',
       headers: {
@@ -55,7 +51,7 @@ function App() {
     return <div>
       <div>
         <div> hello , {email}</div>
-        <PostList />
+        {/* <PostList /> */}
       </div>
       <div>
         <button onClick={Logout}>Logout</button>

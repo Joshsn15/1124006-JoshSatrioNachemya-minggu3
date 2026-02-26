@@ -1,29 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { UserInfo } from "../type";
 
 export type AuthState = {
     userInfo?: UserInfo,
-    username: string,
-    email: string,
-    token: string,
-    isLoggedIn: boolean,
+    isLoading : boolean,
 
 }
 
-const initialState: AuthState = {
+const initialState: AuthState = { // default state saat awal 
     userInfo: undefined,
-    username: "",
-    email: "",
-    token: "",
-    isLoggedIn: false
+    isLoading : false
 }
 
 export const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducers: {
+
+    reducers: { // reducers itu function yang akan mengubah state, contoh: setUserInfo akan mengubah state userInfo
+        setUserInfo: (state, action: PayloadAction<UserInfo>) => {
+            state.userInfo = action.payload;
+            state.isLoading = false;
+        },
     }
 })
 
+// export const buat action, jadi bisa dipanggil di component lain, contoh: dispatch(authActions.setUserInfo(data.user))
 export const authActions = authSlice.actions;
 export const authReducer = authSlice.reducer;
